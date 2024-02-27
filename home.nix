@@ -7,7 +7,7 @@
   home.packages = with pkgs; [
     neofetch
     vscode
-    nil
+    nixd
     nixpkgs-fmt
   ];
 

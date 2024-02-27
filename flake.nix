@@ -7,7 +7,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flatpaks.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
-    nil.url = "github:oxalica/nil#";
+    nixd.url = "github:nix-community/nixd";
   };
 
   outputs = { self, nixpkgs, flatpaks, home-manager, ... }@inputs: {
