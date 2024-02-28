@@ -9,14 +9,7 @@
     unstable.vscode
     nil
     nixpkgs-fmt
-  ];
-
-  services.flatpak.packages = [
-    "org.videolan.VLC"
-    "com.vivaldi.Vivaldi"
-    "com.valvesoftware.Steam"
-    "com.valvesoftware.Steam.Utility.steamtinkerlaunch"
-    "org.onlyoffice.desktopeditors"
+    libsForQt5.discover
   ];
 
   programs.git = {
