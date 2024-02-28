@@ -10,6 +10,7 @@
     nil
     nixpkgs-fmt
     libsForQt5.discover
+    vivaldi
   ];
 
   programs.git = {
