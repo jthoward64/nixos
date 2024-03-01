@@ -24,9 +24,15 @@ fi
 
 # Rebuild
 echo "NixOS Rebuilding..."
-# sudo nixos-rebuild switch &>nixos-switch.log || (
-#   cat nixos-switch.log | grep --color error && false
-# )
+rebuildArgs=""
+# Allow passing --upgrade to nixos-rebuild
+if [[ $1 == "--upgrade" ]]; then
+  rebuildArgs="--upgrade"
+  nix flake update
+fi
+sudo nixos-rebuild switch $rebuildArgs &>nixos-switch.log || (
+  cat nixos-switch.log | grep --color error && false
+)
 
 genString=$(nixos-rebuild list-generations | grep current)
 

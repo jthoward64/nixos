@@ -8,8 +8,6 @@
 
   networking.hostName = "aurora-desktop"; # Define your hostname.
 
-  fonts.fontDir.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   # Copy the NixOS configuration file and link it from the resulting system

@@ -1,27 +1,29 @@
 {
   description = "Tag's NixOS configuration";
 
-  inputs = {
+  inputs = rec {
     # NixOS official package source, using the nixos-23.11 branch here
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs = nixpkgs-unstable;
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixd.url = "github:nix-community/nixd";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     self,
     alejandra,
+    nixpkgs,
     nixpkgs-unstable,
     nixpkgs-stable,
     home-manager,
     ...
   } @ inputs: {
-    nixosConfigurations.aurora-desktop = nixpkgs-unstable.lib.nixosSystem rec {
+    nixosConfigurations.aurora-desktop = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [

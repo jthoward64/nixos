@@ -4,12 +4,13 @@
     vscode
     nil
     nixpkgs-fmt
-    libsForQt5.discover
+    kdePackages.discover
     vivaldi
     vulkan-tools
     glxinfo
     thunderbird
-    libsForQt5.kate
+    kdePackages.kate
+    htop
   ];
 
   programs.git = {
