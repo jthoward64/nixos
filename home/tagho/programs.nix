@@ -3,11 +3,13 @@
 {
   home.packages = with pkgs; [
     neofetch
-    unstable.vscode
+    vscode
     nil
     nixpkgs-fmt
     libsForQt5.discover
     vivaldi
+    vulkan-tools
+    glxinfo
   ];
 
   programs.git = {

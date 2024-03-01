@@ -10,8 +10,8 @@
     nixd.url = "github:nix-community/nixd";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations.aurora-desktop = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs-unstable, home-manager, ... }@inputs: {
+    nixosConfigurations.aurora-desktop = nixpkgs-unstable.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
@@ -27,16 +27,16 @@
         ./host/base/graphics.nix
         ./host/base/pipewire.nix
         ./host/base/kde.nix
-        {
-          nixpkgs.overlays = [
-            (final: prev: {
-              unstable = import inputs.nixpkgs-unstable {
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-              };
-            })
-          ];
-        }
+        # {
+        #   nixpkgs.overlays = [
+        #     (final: prev: {
+        #       unstable = import inputs.nixpkgs-unstable {
+        #         system = "x86_64-linux";
+        #         config.allowUnfree = true;
+        #       };
+        #     })
+        #   ];
+        # }
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
