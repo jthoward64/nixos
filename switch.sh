@@ -41,7 +41,7 @@ lastGen=$(echo $currentGen | awk '{print $1-1}')
 
 # Print the diff-closures between the current and previous generation
 echo "Changes made in this generation:"
-nix store diff-closures "/nix/var/nix/profiles/system-$currentGen-link" "/nix/var/nix/profiles/system-$lastGen-link"
+nix store diff-closures "/nix/var/nix/profiles/system-$lastGen-link" "/nix/var/nix/profiles/system-$currentGen-link"
 
 # Ask if we want to rollback or commit
 rollbackOrCommit=""
