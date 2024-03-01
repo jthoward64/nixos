@@ -7,13 +7,22 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     nixd.url = "github:nix-community/nixd";
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs-unstable, home-manager, ... }@inputs: {
-    nixosConfigurations.aurora-desktop = nixpkgs-unstable.lib.nixosSystem {
+  outputs = {
+    self,
+    alejandra,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: {
+    nixosConfigurations.aurora-desktop = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
       modules = [
         ./mirrors.nix
         ./drives.nix
@@ -27,16 +36,16 @@
         ./host/base/graphics.nix
         ./host/base/pipewire.nix
         ./host/base/kde.nix
-        # {
-        #   nixpkgs.overlays = [
-        #     (final: prev: {
-        #       unstable = import inputs.nixpkgs-unstable {
-        #         system = "x86_64-linux";
-        #         config.allowUnfree = true;
-        #       };
-        #     })
-        #   ];
-        # }
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              unstable = import inputs.nixpkgs-unstable {
+                system = "x86_64-linux";
+                config.allowUnfree = true;
+              };
+            })
+          ];
+        }
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -46,8 +55,9 @@
             ./home/tagho/programs.nix
           ];
           home-manager.extraSpecialArgs.inputs = inputs;
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
+        }
+        {
+          environment.systemPackages = [alejandra.defaultPackage.${system}];
         }
       ];
     };
