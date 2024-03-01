@@ -38,7 +38,7 @@
         ./host/base/pipewire.nix
         ./host/base/kde.nix
         {
-          nixpkgs-unstable.overlays = [
+          nixpkgs.overlays = [
             (final: prev: {
               unstable = import nixpkgs-stable {
                 system = system;
@@ -48,7 +48,7 @@
           ];
         }
         {
-          nixpknixpkgs-unstablegs.overlays = [
+          nixpkgs.overlays = [
             (final: prev: {
               stable = import nixpkgs-unstable {
                 system = system;

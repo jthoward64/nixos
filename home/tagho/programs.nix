@@ -8,6 +8,8 @@
     vivaldi
     vulkan-tools
     glxinfo
+    thunderbird
+    libsForQt5.kate
   ];
 
   programs.git = {

@@ -1,14 +1,58 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Authenticate
+
+sudo echo "Ready"
+
+# Setup
 set -e
 pushd /etc/nixos
-alejandra . &
->/dev/null
+
+# Formatting
+alejandra . &>/dev/null
+
+# Diff
 git diff -U0 *.nix
+
+# Confirm Rebuild
+read -p "Rebuild NixOS? [y/N] " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  echo "Aborted."
+  exit 1
+fi
+
+# Rebuild
 echo "NixOS Rebuilding..."
-sudo nixos-rebuild switch &
->nixos-switch.log || (
-  cat nixos-switch.log | grep --color error && false
-)
-gen=$(nixos-rebuild list-generations | grep current)
-git commit -am "Generation $gen"
+# sudo nixos-rebuild switch &>nixos-switch.log || (
+#   cat nixos-switch.log | grep --color error && false
+# )
+
+genString=$(nixos-rebuild list-generations | grep current)
+
+currentGen=$(echo $genString | awk '{print $1}')
+lastGen=$(echo $currentGen | awk '{print $1-1}')
+
+# Print the diff-closures between the current and previous generation
+echo "Changes made in this generation:"
+nix store diff-closures "/nix/var/nix/profiles/system-$currentGen-link" "/nix/var/nix/profiles/system-$lastGen-link"
+
+# Ask if we want to rollback or commit
+rollbackOrCommit=""
+while [[ $rollbackOrCommit != "r" && $rollbackOrCommit != "c" ]]; do
+  read -p "Rollback or Commit? [r/c] " -n 1 -r
+  echo
+  rollbackOrCommit=$REPLY
+done
+
+# Rollback
+if [[ $rollbackOrCommit == "r" ]]; then
+  echo "Rolling back..."
+  sudo nixos-rebuild switch --rollback
+  exit 1
+fi
+
+# Commit
+echo "Committing..."
+git commit -am "$genString"
 popd
