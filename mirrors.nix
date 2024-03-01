@@ -1,12 +1,10 @@
-{ ...
-}: {
-
+{...}: {
   # ...
   nix.settings = {
     # given the users in this list the right to specify additional substituters via:
     #    1. `nixConfig.substituters` in `flake.nix`
     #    2. command line args `--options substituters http://xxx`
-    trusted-users = [ "tagho" ];
+    trusted-users = ["tagho"];
 
     substituters = [
       "https://nix-community.cachix.org"
@@ -19,5 +17,4 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
-
 }

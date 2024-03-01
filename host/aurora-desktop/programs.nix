@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   # Cloudflare
   services.cloudflared.enable = true;
 

@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-kde ];
+  xdg.portal.extraPortals = with pkgs; [xdg-desktop-portal-kde];
   xdg.portal.config.common.default = "kde";
 
   networking.networkmanager.enable = true;
