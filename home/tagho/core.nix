@@ -1,23 +1,8 @@
-{ inputs, config, pkgs, ... }:
+{ ... }:
 
 {
   home.username = "tagho";
   home.homeDirectory = "/home/tagho";
-
-  home.packages = with pkgs; [
-    neofetch
-    unstable.vscode
-    nil
-    nixpkgs-fmt
-    libsForQt5.discover
-    vivaldi
-  ];
-
-  programs.git = {
-    enable = true;
-    userName = "Joshua Tag Howard";
-    userEmail = "jtho264@uky.edu";
-  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

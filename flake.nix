@@ -1,5 +1,5 @@
 {
-  description = "My NixOS flake";
+  description = "Tag's NixOS configuration";
 
   inputs = {
     # NixOS official package source, using the nixos-23.11 branch here
@@ -11,15 +11,22 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    # Please replace my-nixos with your hostname
     nixosConfigurations.aurora-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
-        ./configuration.nix
         ./mirrors.nix
+        ./drives.nix
+        ./hardware-configuration.nix
+        ./configuration.nix
+        ./host/aurora-desktop/core.nix
+        ./host/aurora-desktop/nvidia.nix
+        ./host/aurora-desktop/programs.nix
+        ./host/base/core.nix
+        ./host/base/bluetooth.nix
+        ./host/base/graphics.nix
+        ./host/base/pipewire.nix
+        ./host/base/kde.nix
         {
           nixpkgs.overlays = [
             (final: prev: {
@@ -35,7 +42,8 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.tagho.imports = [
-            ./home.nix
+            ./home/tagho/core.nix
+            ./home/tagho/programs.nix
           ];
           home-manager.extraSpecialArgs.inputs = inputs;
           # Optionally, use home-manager.extraSpecialArgs to pass

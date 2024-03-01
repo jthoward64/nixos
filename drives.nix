@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ ... }:
 
 {
   # Minimal list of modules to use the EFI system partition and the YubiKey
@@ -16,7 +16,7 @@
         slot = 2;
         twoFactor = false;
         storage = {
-            device = "/dev/disk/by-uuid/375E-ECEE";
+          device = "/dev/disk/by-uuid/375E-ECEE";
         };
       };
     };
@@ -27,40 +27,45 @@
         slot = 2;
         twoFactor = false;
         storage = {
-            device = "/dev/disk/by-uuid/D7E0-7A48";
+          device = "/dev/disk/by-uuid/D7E0-7A48";
         };
       };
     };
   };
-  
+
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
+    {
+      device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
       fsType = "btrfs";
       options = [ "compress=zstd" "noatime" "subvol=@" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
+    {
+      device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
       fsType = "btrfs";
       options = [ "compress=zstd" "noatime" "subvol=@home" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
+    {
+      device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
       fsType = "btrfs";
       options = [ "compress=zstd" "noatime" "subvol=@nix" ];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
+    {
+      device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
       fsType = "btrfs";
       options = [ "noatime" "subvol=@swap" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D7E0-7A48";
+    {
+      device = "/dev/disk/by-uuid/D7E0-7A48";
       fsType = "vfat";
     };
 
-  swapDevices = [ { device = "/swap/swapfile"; } ];
+  swapDevices = [{ device = "/swap/swapfile"; }];
 }
