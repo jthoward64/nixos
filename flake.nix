@@ -3,24 +3,25 @@
 
   inputs = {
     # NixOS official package source, using the nixos-23.11 branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     nixd.url = "github:nix-community/nixd";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = {
     self,
     alejandra,
-    nixpkgs,
+    nixpkgs-unstable,
+    nixpkgs-stable,
     home-manager,
     ...
   } @ inputs: {
-    nixosConfigurations.aurora-desktop = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.aurora-desktop = nixpkgs-unstable.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
@@ -37,10 +38,20 @@
         ./host/base/pipewire.nix
         ./host/base/kde.nix
         {
-          nixpkgs.overlays = [
+          nixpkgs-unstable.overlays = [
             (final: prev: {
-              unstable = import inputs.nixpkgs-unstable {
-                system = "x86_64-linux";
+              unstable = import nixpkgs-stable {
+                system = system;
+                config.allowUnfree = true;
+              };
+            })
+          ];
+        }
+        {
+          nixpknixpkgs-unstablegs.overlays = [
+            (final: prev: {
+              stable = import nixpkgs-unstable {
+                system = system;
                 config.allowUnfree = true;
               };
             })
