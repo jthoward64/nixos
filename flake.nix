@@ -32,10 +32,10 @@
         ./hardware-configuration.nix
         ./configuration.nix
         ./host/aurora-desktop/core.nix
+        ./host/aurora-desktop/boot.nix
         ./host/aurora-desktop/nvidia.nix
         ./host/aurora-desktop/programs.nix
         ./host/base/core.nix
-        ./host/base/systemd-boot.nix
         ./host/base/bluetooth.nix
         ./host/base/graphics.nix
         ./host/base/pipewire.nix

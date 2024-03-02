@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
 
@@ -32,6 +32,5 @@
     # package = config.boot.kernelPackages.nvidia.
   };
 
-  boot.initrd.kernelModules = ["nvidia"];
-  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+  boot.initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
 }
