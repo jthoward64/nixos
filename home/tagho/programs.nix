@@ -1,15 +1,15 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     neofetch
-    vscode
+    unstable.vscode
     nil
     nixpkgs-fmt
-    kdePackages.discover
+    libsForQt5.discover
     vivaldi
     vulkan-tools
     glxinfo
     thunderbird
-    kdePackages.kate
+    libsForQt5.kate
     htop
   ];
 
