@@ -6,9 +6,19 @@
   networking.networkmanager.enable = true;
 
   # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.displayManager.defaultSession = "plasmax11";
 
   programs.dconf.enable = true;
+
+  boot.plymouth = {
+    enable = true;
+    theme = "breeze";
+  };
+
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    theme = "breeze";
+    autoNumlock = true;
+  };
 }
