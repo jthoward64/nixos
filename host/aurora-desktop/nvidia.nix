@@ -1,6 +1,6 @@
 {config, ...}: {
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidiaLegacy535"]; # or "nvidiaLegacy470 etc.
+  services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -29,7 +29,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    # package = config.boot.kernelPackages.nvidia.
   };
 
   boot.initrd.kernelModules = ["nvidia"];
