@@ -6,7 +6,7 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs = nixpkgs-stable;
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixd.url = "github:nix-community/nixd";
@@ -35,6 +35,7 @@
         ./host/aurora-desktop/nvidia.nix
         ./host/aurora-desktop/programs.nix
         ./host/base/core.nix
+        ./host/base/systemd-boot.nix
         ./host/base/bluetooth.nix
         ./host/base/graphics.nix
         ./host/base/pipewire.nix
