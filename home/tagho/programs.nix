@@ -12,6 +12,7 @@
     htop
     papirus-icon-theme
     jetbrains.datagrip
+    android-studio
   ];
 
   programs.git = {
