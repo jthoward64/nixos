@@ -5,7 +5,6 @@
     nil
     nixpkgs-fmt
     kdePackages.discover
-    vivaldi
     vulkan-tools
     glxinfo
     thunderbird
