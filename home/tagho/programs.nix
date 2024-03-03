@@ -10,6 +10,7 @@
     thunderbird
     kdePackages.kate
     htop
+    papirus-icon-theme
   ];
 
   programs.git = {

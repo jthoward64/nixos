@@ -40,6 +40,7 @@
         ./host/base/graphics.nix
         ./host/base/pipewire.nix
         ./host/base/kde.nix
+        ./host/base/xdg-fonts-icons.nix
         {
           nixpkgs.overlays = [
             (final: prev: {
