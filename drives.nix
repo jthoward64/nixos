@@ -66,4 +66,17 @@
       size = 32 * 1024;
     }
   ];
+
+  # Disable hibernation
+  systemd.sleep.extraConfig = ''
+    [Sleep]
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
+
+  services.logind.extraConfig = ''
+    [Login]
+    HibernateKeyIgnoreInhibited=no
+  '';
 }
