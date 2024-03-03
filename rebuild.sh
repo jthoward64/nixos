@@ -25,13 +25,13 @@ fi
 # Rebuild
 rebuildArgs=""
 # Allow passing --upgrade to nixos-rebuild
-if [[ $1 == "--upgrade" ]]; then
+if [[ $2 == "--upgrade" ]]; then
   echo "Upgrading..."
   rebuildArgs="--upgrade"
   nix flake update
 fi
 echo "NixOS Rebuilding..."
-sudo nixos-rebuild switch $rebuildArgs &>nixos-switch.log || (
+sudo nixos-rebuild $1 $rebuildArgs &>nixos-switch.log || (
   cat nixos-switch.log | grep --color error && false
 )
 
