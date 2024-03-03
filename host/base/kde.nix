@@ -6,8 +6,8 @@
   networking.networkmanager.enable = true;
 
   # Enable the Plasma 5 Desktop Environment.
-  services.xserver.desktopManager.plasma5.enable = true;
-  # services.xserver.displayManager.defaultSession = "plasmax11";
+  services.xserver.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.defaultSession = "plasmax11";
 
   programs.dconf.enable = true;
 
