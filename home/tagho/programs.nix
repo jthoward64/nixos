@@ -11,6 +11,7 @@
     kdePackages.kate
     htop
     papirus-icon-theme
+    jetbrains.datagrip
   ];
 
   programs.git = {
