@@ -6,4 +6,8 @@
     isNormalUser = true;
     extraGroups = ["wheel" "docker"];
   };
+
+  networking.firewall = {
+    trustedInterfaces = ["tailscale0" "docker0"];
+  };
 }
