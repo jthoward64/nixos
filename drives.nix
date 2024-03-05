@@ -49,34 +49,8 @@
     options = ["compress=zstd" "noatime" "subvol=@nix"];
   };
 
-  fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
-    fsType = "btrfs";
-    options = ["noatime" "subvol=@swap"];
-  };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/D7E0-7A48";
     fsType = "vfat";
   };
-
-  swapDevices = [
-    {
-      device = "/swap/swapfile";
-      size = 32 * 1024;
-    }
-  ];
-
-  # Disable hibernation
-  systemd.sleep.extraConfig = ''
-    [Sleep]
-    AllowHibernation=no
-    AllowHybridSleep=no
-    AllowSuspendThenHibernate=no
-  '';
-
-  services.logind.extraConfig = ''
-    [Login]
-    HibernateKeyIgnoreInhibited=no
-  '';
 }
