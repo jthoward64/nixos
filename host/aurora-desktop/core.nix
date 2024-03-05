@@ -10,4 +10,13 @@
   networking.firewall = {
     trustedInterfaces = ["tailscale0" "docker0"];
   };
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+    openFirewall = true;
+  };
 }
