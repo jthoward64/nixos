@@ -13,6 +13,7 @@
     papirus-icon-theme
     jetbrains.datagrip
     android-studio
+    nushell
   ];
 
   programs.git = {
