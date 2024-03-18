@@ -21,4 +21,6 @@
     userName = "Joshua Tag Howard";
     userEmail = "jtho264@uky.edu";
   };
+
+  services.ssh-agent.enable = true;
 }
