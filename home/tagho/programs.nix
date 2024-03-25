@@ -14,6 +14,7 @@
     jetbrains.datagrip
     android-studio
     nushell
+    steamtinkerlaunch
   ];
 
   programs.git = {
