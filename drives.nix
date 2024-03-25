@@ -43,6 +43,12 @@
     options = ["compress=zstd" "noatime" "subvol=@home"];
   };
 
+  fileSystems."/steam" = {
+    device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
+    fsType = "btrfs";
+    options = ["compress=zstd" "noatime" "subvol=@steam"];
+  };
+
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/41712790-4ec7-42c9-86ea-bc69a694df11";
     fsType = "btrfs";

@@ -15,6 +15,8 @@
     android-studio
     nushell
     steamtinkerlaunch
+    firefox
+    nvidia-vaapi-driver
   ];
 
   programs.git = {
