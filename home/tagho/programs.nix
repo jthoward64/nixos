@@ -19,6 +19,7 @@
     protontricks
     lutris
     distrobox
+    wineWow64Packages.full
   ];
 
   programs.git = {
