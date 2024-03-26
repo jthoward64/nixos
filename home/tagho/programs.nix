@@ -14,18 +14,17 @@
     jetbrains.datagrip
     android-studio
     nushell
-    steamtinkerlaunch
-    firefox
     nvidia-vaapi-driver
     winetricks
     protontricks
     lutris
+    distrobox
   ];
 
   programs.git = {
     enable = true;
     userName = "Joshua Tag Howard";
-    userEmail = "jtho264@uky.edu";
+    userEmail = "tag@jthoward.dev";
   };
 
   services.ssh-agent.enable = true;
