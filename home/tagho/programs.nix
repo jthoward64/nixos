@@ -17,6 +17,9 @@
     steamtinkerlaunch
     firefox
     nvidia-vaapi-driver
+    winetricks
+    protontricks
+    lutris
   ];
 
   programs.git = {
