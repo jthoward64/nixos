@@ -18,7 +18,7 @@
     winetricks
     protontricks
     lutris
-    distrobox
+    steamtinkerlaunch
     wineWow64Packages.full
   ];
 
