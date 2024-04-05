@@ -20,6 +20,7 @@
     lutris
     steamtinkerlaunch
     wineWow64Packages.full
+    jetbrains.idea-community
   ];
 
   programs.git = {
