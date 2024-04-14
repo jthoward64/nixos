@@ -18,7 +18,6 @@
     winetricks
     protontricks
     lutris
-    steamtinkerlaunch
     wineWow64Packages.full
     jetbrains.idea-community
   ];

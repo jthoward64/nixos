@@ -17,6 +17,7 @@
     libsForQt5.kio-extras
     kio-fuse
     pkgs.postgresql_16
+    steamtinkerlaunch
   ];
 
   virtualisation = {
