@@ -20,6 +20,10 @@
     steamtinkerlaunch
   ];
 
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOL_PATHS = "$HOME/.local/steamcompat";
+  };
+
   virtualisation = {
     libvirtd.enable = true;
   };
