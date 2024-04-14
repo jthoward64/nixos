@@ -12,7 +12,7 @@ pushd /etc/nixos
 alejandra . &>/dev/null
 
 # Diff
-git diff -U0 *.nix
+git diff -U0
 
 # Confirm Rebuild
 read -p "Rebuild NixOS? [y/N] " -n 1 -r
